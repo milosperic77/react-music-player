@@ -1,0 +1,126 @@
+/**
+ * songs.styl
+ * -------------
+ */
+
+.songs{
+  transition: opacity 600ms;
+}
+
+.song{
+  // outline: 1px solid red;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  transition: opacity 500ms;
+  // pointer-events all
+  // pointer-events all
+  // &[data-click='1']{
+  //   animate clickC 500ms, opacity(0.3), scale(0.98)
+  // }
+  // &[data-click='2']{
+  //   animate clickD 500ms, opacity(0.3), scale(0.98)
+  // }
+  &[data-spectrum="true"]{
+    .eq{
+      opacity: 1;
+    }
+  }
+  // &[data-spectrum="false"]{
+  //   .eq{
+  //     opacity: 0;
+  //   }
+  // }
+  .cover-image{
+    pointer-events: none;
+
+    .image{
+      width: 55px;
+      height: 55px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .song-info{
+    position: relative;
+    pointer-events: none;
+    display: flex;
+    flex: 1 1 0px;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+
+    .artist{
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 300;
+      color: gray;
+    }
+
+    .song-name{
+      margin-top: 4px;
+    }
+  }
+
+  .song-duration{
+    // outline: 1px solid red;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+
+    .eq{
+      margin-left: 5px;
+      margin-right: 30px;
+      transition: opacity 300ms;
+
+      span{
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3){
+          // animate cancel 100ms, 100% scaleY(2)
+          transition: opacity 600ms;
+        }
+      }
+
+    }
+
+      span{
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        margin-left: 4px;
+        padding: 0;
+        background-color: gray;
+
+        transform: scaleY(2);
+        transform-origin: bottom;
+
+        &:nth-child(1){
+          // animate: eq1 600ms infinite alternate, 100% scaleY(6);
+          opacity: 1;
+        }
+
+        &:nth-child(2){
+          // animate: eq2 800ms infinite alternate, 100% scaleY(8);
+          opacity: 1;
+        }
+
+        &:nth-child(3){
+          // animate: eq3 400ms infinite alternate, 100% scaleY(4);
+          opacity: 1;
+        }
+      }
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 300;
+      color: gray;
+    }
+}

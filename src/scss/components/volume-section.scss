@@ -1,0 +1,33 @@
+/**
+ * volume-section.styl
+ * -------------
+*/
+
+.volume-section{
+  display: flex;
+  flex: 0 0 100px;
+  flex-direction: column;
+
+  .logo{
+    flex: 1 1 auto;
+  }
+
+  .volume-slider{
+    position: relative;
+    flex: 0 0 20vh;
+    min-height: 295px;
+
+    .volume-wraper{
+      width: 100%;
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .volume-value{
+        margin-top: 20px;
+      }
+    }
+  }
+}

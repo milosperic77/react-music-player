@@ -1,0 +1,15 @@
+import React from 'react';
+import Consumer from '../../../configContext'
+
+const Header = props => (
+  <div className="header">
+    <h3 className="test-inner">Top Songs</h3>
+    <Consumer>
+      {(value) => (
+        <i onClick={value.state.toogleDisplay} className="fas fas fa-chevron-right arrow-next"></i>
+      )}
+    </Consumer>
+  </div>
+);
+
+export default Header;

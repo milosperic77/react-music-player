@@ -1,0 +1,120 @@
+/**
+ * controls, song-buttons, songtimeline.styl
+ * -------------
+ */
+
+.controls{
+  position: relative;
+  margin-right: 40px;
+  position: relative;
+
+  &[data-screen="single"]{
+    .song-buttons{
+      .previous,
+      .next{
+        opacity: 1;
+      }
+
+      .play{
+        left: 39px;
+      }
+    }
+
+    .song-timeline{
+      width: 55%;
+    }
+  }
+
+  .song-buttons{
+    position: relative;
+    height: 60px;
+    width: 100%;
+    max-width: 140px;
+    margin-left: 20px;
+
+    .previous{
+      position: absolute;
+      top: 37px;
+      left: -5px;
+      opacity: 0;
+      transition: opacity 600ms;
+
+      &.icon{
+        font-size: 32px;
+      }
+    }
+
+    .next{
+      position: absolute;
+      top: 37px;
+      right: 6px;
+      opacity: 0;
+      transition: opacity 600ms;
+
+      &.icon{
+        icon-ion: 'ios-fastforward';
+        font-size: 32px;
+      }
+    }
+
+    .play{
+      position: absolute;
+      top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      border: 2px solid black;
+      border-radius: 30px;
+      transition: left 1200ms, top 1200ms;
+    }
+  }
+
+  .song-timeline{
+    width: 75%;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    transition: width 600ms, bottom 600ms;
+
+    .timeline-wraper{
+      display: flex;
+      justify-content: space-between;
+
+      .current-time,
+      .timeline-duration{
+        font-weight: 400;
+        font-size: 12px;
+        margin-top: 3px;
+        // color: hsla($vars-colors-gray, 0.4);
+        color: gray;
+      }
+    }
+   }
+
+
+  }
+
+.playlist-section{
+  &[data-status='song']{
+    .song-buttons,
+    .play{
+      position: absolute;
+      top: -20px;
+      left: 28;
+    }
+
+    .next,
+    .previous{
+      top: -10px;
+      opacity: 1;
+    }
+
+    .song-timeline{
+      width: 100%;
+      bottom: 28px;
+    }
+  }
+}
