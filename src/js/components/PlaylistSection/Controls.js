@@ -24,10 +24,13 @@ class Controls extends React.Component{
               </div>
 
               <div className="song-timeline">
-                <Slider className="slider-fixes" />
+                <Slider
+                  className="slider-fixes"
+                  defaultValue={0}
+                />
                 <div className="timeline-wraper">
-                  <p className="current-time">0:00</p>
-                  <p className="timeline-duration">3:23</p>
+                  <p className="current-time">{value.state.currentTime}</p>
+                  <p className="timeline-duration">{value.state.songDuration}</p>
                 </div>
               </div>
             </div>

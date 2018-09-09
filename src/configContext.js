@@ -10,16 +10,21 @@ class ConfigProvider extends Component {
     this.pauseAudio = this.pauseAudio.bind(this);
     this.playPauseToggler = this.playPauseToggler.bind(this);
     this.volumeStatus = this.volumeStatus.bind(this);
+    this.getTimeline = this.getTimeline.bind(this);
+    this.getUpdatedTime = this.getUpdatedTime.bind(this);
 
     this.state = {
       playing: false,
       volume: 50,
       currentTrackIndex: 0,
       songPath: '',
+      currentTime: '0:00',
+      songDuration: '0:00',
       currentDisplay: 'playlist',
       songTaker: this.getSong,
       playPauseToggler: this.playPauseToggler,
       getVolume: this.volumeStatus,
+      getTimeline: this.timelineStatus,
       toogleDisplay: () => {
         if(this.state.currentDisplay === 'playlist'){
           this.setState({
@@ -34,12 +39,45 @@ class ConfigProvider extends Component {
     };
   }
 
-  // set duration for single song
+  getTimeline(){
+    console.log('aa');
+  }
+
+  getUpdatedTime(){
+    const minutes = parseInt(this.audioElement.currentTime / 60, 10);
+    const cS = parseInt(this.audioElement.currentTime % 60, 10);
+    const seconds = cS < 10 ? `0${cS}` : cS;
+
+    this.setState({
+      currentTime: `${minutes}:${seconds}`
+    });
+    // const ct = parseInt(songAudio.currentTime, 10);
+    // const cd = parseInt(songAudio.duration, 10);
+    // const position = (ct / cd) * 100;
+    // const size = position.toFixed(1);
+    // if (!blockProgressBar) {
+    //   progressBar.value = size;
+    //   range.style.width = `${size}%`;
+    // }
+    // if (ct === cd) {
+    //   progressBar.value = 0;
+    //   range.style.width = `${0}%`;
+    //   currentTime.innerText = '0:00';
+    //   controls.setAttribute('data-play', 'false');
+    //   resetAllSpectrum();
+    // }
+  };
+
+  // const scrub = (e) => {
+  //   const audioFile = songs[currentSong].querySelector('.audio-file');
+  //   const currentDuration = audioFile.duration;
+  //   audioFile.currentTime = currentDuration * (e.target.value / 100);
+  // };
+
   // update duration
 
   volumeStatus(e){
     const volume = e;
-    console.log(e);
     this.setState((state, props) => {
       return {
         volume: volume,
@@ -66,7 +104,8 @@ class ConfigProvider extends Component {
       return {
         playing: true,
         currentTrackIndex: pesma.songId,
-        songPath: pesma.songSrc
+        songPath: pesma.songSrc,
+        songDuration: pesma.songDuration
       };
     }, this.playAudio());
 
@@ -101,7 +140,12 @@ class ConfigProvider extends Component {
       <Provider value={{
         state: this.state
       }}>
-        <audio preload="metadata" ref={(audio) => {this.audioElement = audio}} song-id={this.state.currentTrackIndex}>
+        <audio
+          preload="metadata"
+          ref={(audio) => {this.audioElement = audio}}
+          onTimeUpdate={this.getUpdatedTime}
+          song-id={this.state.currentTrackIndex}
+        >
           <source src={this.state.songPath}/>
         </audio>
         {this.props.children}
