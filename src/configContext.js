@@ -57,22 +57,10 @@ class ConfigProvider extends Component {
     });
   };
 
-  timelineStatus(){
-    // const ct = parseInt(this.audioElement.currentTime, 10);
-    // const cd = parseInt(this.audioElement.duration, 10);
-
-    // console.log();
-    // const position = (ct / cd) * 100;
-    // const size = position.toFixed(1);
+  timelineStatus(e){
+    const currentDuration = this.audioElement.duration;
+    this.audioElement.currentTime = currentDuration * (e / 100);
   }
-
-  // const scrub = (e) => {
-  //   const audioFile = songs[currentSong].querySelector('.audio-file');
-  //   const currentDuration = audioFile.duration;
-  //   audioFile.currentTime = currentDuration * (e.target.value / 100);
-  // };
-
-  // update duration
 
   volumeStatus(e){
     const volume = e;
@@ -131,6 +119,7 @@ class ConfigProvider extends Component {
   volumeLevel(){
     const formatVolumeValue = this.state.volume / 100;
     this.audioElement.volume = formatVolumeValue;
+    console.log(formatVolumeValue);
   }
 
   render() {
