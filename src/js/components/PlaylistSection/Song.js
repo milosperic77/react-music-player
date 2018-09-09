@@ -3,14 +3,18 @@ import Consumer from '../../../configContext'
 
 class Song extends Component {
   getSongPropsClick = () => {
-    const pesma = {
+    const songProps = {
       songArtist: this.props.trackArtist,
       songId: this.props.id,
       songName: this.props.songName,
       songCover: this.props.songCover,
       songSrc: this.props.srcMp3
     }
-    this.props.getSong(pesma);
+    this.props.getSong(songProps);
+  }
+
+  setDuration(){
+    console.log(this.props.srcMp3.duration)
   }
 
   render(){
