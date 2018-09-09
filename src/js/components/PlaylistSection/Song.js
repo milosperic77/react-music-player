@@ -13,10 +13,6 @@ class Song extends Component {
     this.props.getSong(songProps);
   }
 
-  setDuration(){
-    console.log(this.props.srcMp3.duration)
-  }
-
   render(){
     return(
       <Consumer>
