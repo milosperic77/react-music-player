@@ -10,17 +10,18 @@ class ConfigProvider extends Component {
     this.pauseAudio = this.pauseAudio.bind(this);
     this.playPauseToggler = this.playPauseToggler.bind(this);
     this.volumeStatus = this.volumeStatus.bind(this);
-    this.getTimeline = this.getTimeline.bind(this);
+    this.timelineStatus = this.timelineStatus.bind(this);
     this.getUpdatedTime = this.getUpdatedTime.bind(this);
 
     this.state = {
       playing: false,
-      volume: 50,
-      currentTrackIndex: 0,
       songPath: '',
+      currentTrackIndex: 0,
       currentTime: '0:00',
       songDuration: '0:00',
+      volume: 50,
       currentDisplay: 'playlist',
+      timelinePosition: 0,
       songTaker: this.getSong,
       playPauseToggler: this.playPauseToggler,
       getVolume: this.volumeStatus,
@@ -39,34 +40,31 @@ class ConfigProvider extends Component {
     };
   }
 
-  getTimeline(){
-    console.log('aa');
-  }
-
   getUpdatedTime(){
     const minutes = parseInt(this.audioElement.currentTime / 60, 10);
     const cS = parseInt(this.audioElement.currentTime % 60, 10);
     const seconds = cS < 10 ? `0${cS}` : cS;
 
+    const ct = parseInt(this.audioElement.currentTime, 10);
+    const cd = parseInt(this.audioElement.duration, 10);
+    const rawPosition = (ct / cd) * 100;
+
+    const position = Math.floor(rawPosition);
+
     this.setState({
-      currentTime: `${minutes}:${seconds}`
+      currentTime: `${minutes}:${seconds}`,
+      timelinePosition: position
     });
-    // const ct = parseInt(songAudio.currentTime, 10);
-    // const cd = parseInt(songAudio.duration, 10);
+  };
+
+  timelineStatus(){
+    // const ct = parseInt(this.audioElement.currentTime, 10);
+    // const cd = parseInt(this.audioElement.duration, 10);
+
+    // console.log();
     // const position = (ct / cd) * 100;
     // const size = position.toFixed(1);
-    // if (!blockProgressBar) {
-    //   progressBar.value = size;
-    //   range.style.width = `${size}%`;
-    // }
-    // if (ct === cd) {
-    //   progressBar.value = 0;
-    //   range.style.width = `${0}%`;
-    //   currentTime.innerText = '0:00';
-    //   controls.setAttribute('data-play', 'false');
-    //   resetAllSpectrum();
-    // }
-  };
+  }
 
   // const scrub = (e) => {
   //   const audioFile = songs[currentSong].querySelector('.audio-file');

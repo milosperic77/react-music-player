@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'rc-slider';
+import InputRange from 'react-input-range';
 import Consumer from '../../../configContext'
 
 class VolumeSlider extends Component {
@@ -9,12 +9,12 @@ class VolumeSlider extends Component {
         <Consumer>
           {(value) => (
             <div className="volume-wraper">
-              <Slider
+              <InputRange
                 className="slider-fixes volume-range"
-                vertical
-                defaultValue={50}
-                min={0}
-                max={100}
+                // defaultValue={value.state.volume}
+                minValue={0}
+                maxValue={100}
+                value={value.state.volume}
                 onChange={(e)=>{value.state.getVolume(e)}}
               />
               <i className="fas fa-volume-up volume-value"></i>
