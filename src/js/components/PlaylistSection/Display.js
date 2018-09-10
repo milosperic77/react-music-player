@@ -7,7 +7,6 @@ const Display = props => (
   <Consumer>
     {(value) => (
       <div className="display">
-        {console.log(value.state)}
         {value.state.currentDisplay === 'playlist' ?
           <Playlist currentTrackIndex={props.currentTrackIndex} />
           :

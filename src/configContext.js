@@ -20,6 +20,7 @@ class ConfigProvider extends Component {
       songArtist: 'None',
       songTags: [],
       songPath: '',
+      songCover: '',
       currentTrackIndex: 0,
       currentTime: '0:00',
       songDuration: '0:00',
@@ -111,7 +112,8 @@ class ConfigProvider extends Component {
           currentTrackIndex: pesma.songId,
           songPath: pesma.songSrc,
           songDuration: pesma.songDuration,
-          songTags: pesma.songTags
+          songTags: pesma.songTags,
+          songCover: pesma.songCover
         };
       }, this.playAudio());
     }

@@ -13,7 +13,7 @@
       .previous,
       .next{
         opacity: 1;
-        transition-delay: 1000ms;
+        transition-delay: 400ms;
       }
 
       .play{
@@ -36,20 +36,20 @@
 
     .previous{
       position: absolute;
-      top: 41px;
+      top: 37px;
       left: -5px;
       opacity: 0;
       font-size: 25px;
-      transition: opacity 600ms;
+      transition: opacity 500ms;
     }
 
     .next{
       position: absolute;
-      top: 41px;
+      top: 37px;
       right: -14px;
       opacity: 0;
       font-size: 25px;
-      transition: opacity 600ms;
+      transition: opacity 500ms;
     }
 
     .play{
@@ -63,7 +63,7 @@
       height: 50px;
       border: 2px solid black;
       border-radius: 30px;
-      transition: left 600ms  600ms;
+      transition: left 600ms  200ms;
     }
   }
 
@@ -71,7 +71,7 @@
     width: 70%;
     position: absolute;
     right: 0;
-    bottom: 30px;
+    bottom: 25px;
     transition: width 600ms, bottom 600ms;
 
     .timeline-wraper{
@@ -83,7 +83,6 @@
         font-weight: 400;
         font-size: 12px;
         margin-top: 3px;
-        // color: hsla($vars-colors-gray, 0.4);
         color: gray;
       }
     }
