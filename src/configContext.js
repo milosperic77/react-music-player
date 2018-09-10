@@ -86,17 +86,10 @@ class ConfigProvider extends Component {
   }
 
   getSong(pesma){
-    this.setState((state, props) => {
-      return {
-        playing: true,
-        currentTrackIndex: pesma.songId,
-        songPath: pesma.songSrc,
-        songDuration: pesma.songDuration
-      };
-    }, this.playAudio());
+
 
     // ovaj neda posto kaze da nesme play() da se interuptije sa pause()
-    if(this.state.currentTrackIndex === pesma.songId){
+    if(this.state.currentTrackIndex === pesma.songId && this.state.playing){
       this.setState((state, props) => {
         return {
           playing: false,
@@ -104,6 +97,15 @@ class ConfigProvider extends Component {
           songPath: pesma.songSrc
         };
       }, this.pauseAudio());
+    } else if(!this.state.playing || this.state.currentTrackIndex !== pesma.songId) {
+      this.setState((state, props) => {
+        return {
+          playing: true,
+          currentTrackIndex: pesma.songId,
+          songPath: pesma.songSrc,
+          songDuration: pesma.songDuration
+        };
+      }, this.playAudio());
     }
   }
 

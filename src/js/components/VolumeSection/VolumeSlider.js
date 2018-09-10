@@ -12,7 +12,6 @@ class VolumeSlider extends Component {
               <InputRange
                 className="slider-fixes volume-range"
                 defaultValue={value.state.volume}
-                orientation="vertical"
                 minValue={0}
                 maxValue={100}
                 value={value.state.volume}
