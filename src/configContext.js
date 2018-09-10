@@ -86,9 +86,8 @@ class ConfigProvider extends Component {
   }
 
   getSong(pesma){
-
-
-    // ovaj neda posto kaze da nesme play() da se interuptije sa pause()
+    this.audioElement.load();
+  
     if(this.state.currentTrackIndex === pesma.songId && this.state.playing){
       this.setState((state, props) => {
         return {
@@ -110,7 +109,6 @@ class ConfigProvider extends Component {
   }
 
   playAudio(){
-    this.audioElement.load();
     this.audioElement.play();
   }
 
@@ -121,7 +119,6 @@ class ConfigProvider extends Component {
   volumeLevel(){
     const formatVolumeValue = this.state.volume / 100;
     this.audioElement.volume = formatVolumeValue;
-    console.log(formatVolumeValue);
   }
 
   render() {
