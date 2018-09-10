@@ -8,12 +8,13 @@
 }
 
 .song{
-  // outline: 1px solid red;
   align-items: center;
   justify-content: center;
   display: flex;
   cursor: pointer;
   transition: opacity 500ms;
+  padding-left: 15px;
+  margin-bottom: 10px;
   // pointer-events all
   // pointer-events all
   // &[data-click='1']{
