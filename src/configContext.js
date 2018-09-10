@@ -16,6 +16,9 @@ class ConfigProvider extends Component {
 
     this.state = {
       playing: false,
+      songName: 'None',
+      songArtist: 'None',
+      songTags: [],
       songPath: '',
       currentTrackIndex: 0,
       currentTime: '0:00',
@@ -102,10 +105,13 @@ class ConfigProvider extends Component {
     } else if(!this.state.playing || this.state.currentTrackIndex !== pesma.songId) {
       this.setState((state, props) => {
         return {
+          songName: pesma.songName,
+          songArtist: pesma.songArtist,
           playing: true,
           currentTrackIndex: pesma.songId,
           songPath: pesma.songSrc,
-          songDuration: pesma.songDuration
+          songDuration: pesma.songDuration,
+          songTags: pesma.songTags
         };
       }, this.playAudio());
     }

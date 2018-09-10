@@ -15,6 +15,7 @@ class Playlist extends Component {
                 key={index}
                 id={song.id}
                 songName={song.songName}
+                songTags={song.tags}
                 trackArtist={song.trackArtist}
                 songCover={song.songCover}
                 srcMp3={song.srcMp3}

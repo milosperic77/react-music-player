@@ -13,15 +13,14 @@ class Song extends Component {
   getSongPropsClick = () => {
     const songProps = {
       songArtist: this.props.trackArtist,
-      songId: this.props.id,
       songName: this.props.songName,
+      songTags: this.props.songTags,
+      songId: this.props.id,
       songCover: this.props.songCover,
       songSrc: this.props.srcMp3,
       songDuration: this.state.duration
     }
     this.props.getSong(songProps);
-
-    console.log(this.props)
   }
 
   setDurations = () => {

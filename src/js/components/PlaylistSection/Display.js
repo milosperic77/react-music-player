@@ -7,10 +7,15 @@ const Display = props => (
   <Consumer>
     {(value) => (
       <div className="display">
+        {console.log(value.state)}
         {value.state.currentDisplay === 'playlist' ?
           <Playlist currentTrackIndex={props.currentTrackIndex} />
           :
-          <Single />
+          <Single
+            songName={value.state.songName}
+            tags={value.state.songTags}
+            songArtist={value.state.songArtist}
+          />
         }
       </div>
     )}
