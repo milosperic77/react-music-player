@@ -1,11 +1,12 @@
 import React, {Component} from "react";
+import Eq from './Eq';
 import Consumer from '../../../configContext'
 
 class Song extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      duration: '0:00'
+      duration: '0:00',
     }
   }
 
@@ -19,6 +20,8 @@ class Song extends Component {
       songDuration: this.state.duration
     }
     this.props.getSong(songProps);
+
+    console.log(this.props)
   }
 
   setDurations = () => {
@@ -52,11 +55,11 @@ class Song extends Component {
                 <p className="artist">{this.props.trackArtist}</p>
                 <h4 className="song-name">{this.props.songName}</h4>
                 <div className='song-duration'>
-                  <div className='eq' data-cancel='false'>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
+                  {this.props.isPlaying ?
+                    <Eq
+                      isPlaying={this.props.isPlaying}
+                    /> : ''
+                  }
                   <p className='full-duration'>{this.state.duration}</p>
                 </div>
               </div>

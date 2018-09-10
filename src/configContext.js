@@ -12,6 +12,7 @@ class ConfigProvider extends Component {
     this.volumeStatus = this.volumeStatus.bind(this);
     this.timelineStatus = this.timelineStatus.bind(this);
     this.getUpdatedTime = this.getUpdatedTime.bind(this);
+    this.toogleDisplay = this.toogleDisplay.bind(this);
 
     this.state = {
       playing: false,
@@ -26,18 +27,20 @@ class ConfigProvider extends Component {
       playPauseToggler: this.playPauseToggler,
       getVolume: this.volumeStatus,
       getTimeline: this.timelineStatus,
-      toogleDisplay: () => {
-        if(this.state.currentDisplay === 'playlist'){
-          this.setState({
-            currentDisplay: 'single'
-          });
-        } else if(this.state.currentDisplay === 'single'){
-          this.setState({
-            currentDisplay: 'playlist'
-          });
-        }
-      },
+      toogleDisplay: this.toogleDisplay
     };
+  }
+
+  toogleDisplay(){
+    if(this.state.currentDisplay === 'playlist'){
+      this.setState({
+        currentDisplay: 'single'
+      });
+    } else if(this.state.currentDisplay === 'single'){
+      this.setState({
+        currentDisplay: 'playlist'
+      });
+    }
   }
 
   getUpdatedTime(){
@@ -87,7 +90,7 @@ class ConfigProvider extends Component {
 
   getSong(pesma){
     this.audioElement.load();
-  
+
     if(this.state.currentTrackIndex === pesma.songId && this.state.playing){
       this.setState((state, props) => {
         return {

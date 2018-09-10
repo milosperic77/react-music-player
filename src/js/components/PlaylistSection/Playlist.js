@@ -19,6 +19,7 @@ class Playlist extends Component {
                 songCover={song.songCover}
                 srcMp3={song.srcMp3}
                 getSong={value.state.songTaker}
+                isPlaying={value.state.playing}
               />
             )}
           </Consumer>
