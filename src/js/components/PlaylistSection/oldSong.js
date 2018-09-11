@@ -1,30 +1,45 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Eq from './Eq';
 import Consumer from '../../../configContext'
 
 class Song extends Component {
   constructor(props) {
     super(props);
-    this.state ={ duration: '0:00'}
+    this.state = {
+      duration: '0:00',
+    }
   }
 
-  setDurations = (e) => {
-    const minutes = parseInt(e.target.duration / 60, 10);
-    const second = parseInt(e.target.duration % 60, 10);
+  getSongPropsClick = () => {
+    const songProps = {
+      songArtist: this.props.trackArtist,
+      songName: this.props.songName,
+      songTags: this.props.songTags,
+      songId: this.props.id,
+      songCover: this.props.songCover,
+      songSrc: this.props.srcMp3,
+      songDuration: this.state.duration
+    }
+    this.props.getSong(songProps);
+  }
+
+  setDurations = () => {
+    const minutes = parseInt(this.audiofile.duration / 60, 10);
+    const second = parseInt(this.audiofile.duration % 60, 10);
 
     this.setState({
       duration: `${minutes}:${second}`
     });
   }
 
-  render() {
+  render(){
     return(
       <Consumer>
         {(value) => (
           <div
-            onClick={(e)=>{value.onSongClick(e.target)}} className="song"
+            onClick={this.getSongPropsClick}
+            className="song"
             data-id={this.props.id}
-            data-duration={this.state.duration}
             >
               <div className="cover-image">
                 <div
@@ -33,16 +48,17 @@ class Song extends Component {
                 </div>
               </div>
 
-              <audio
-                onLoadedMetadata={this.setDurations}
-                src={this.props.srcMp3}
-              />
+              <audio onLoadedMetadata={this.setDurations} ref={(audio)=>{ this.audiofile = audio }} src={this.props.srcMp3} />
 
               <div className="song-info">
                 <p className="artist">{this.props.trackArtist}</p>
                 <h4 className="song-name">{this.props.songName}</h4>
                 <div className='song-duration'>
-                  {this.props.isPlaying ? <Eq isPlaying={this.props.isPlaying} /> : '' }
+                  {this.props.isPlaying ?
+                    <Eq
+                      isPlaying={this.props.isPlaying}
+                    /> : ''
+                  }
                   <p className='full-duration'>{this.state.duration}</p>
                 </div>
               </div>
