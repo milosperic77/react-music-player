@@ -6,7 +6,7 @@ const Header = props => (
     <h3 className="test-inner">Top Songs</h3>
     <Consumer>
       {(value) => (
-        <i onClick={value.state.toogleDisplay} className="fas fas fa-chevron-right arrow-next"></i>
+        <i onClick={value.state.toogleDisplay} data-show={value.state.currentDisplay} className="fas fas fa-chevron-right arrow-next"></i>
       )}
     </Consumer>
   </div>

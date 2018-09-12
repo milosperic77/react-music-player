@@ -55,33 +55,21 @@
 }
 
 .playlist-section{
-
-  &[data-status='song']{
-    .header{
-      h3{
-        opacity: 0;
-        transform: translateX(-200px);
-        position: absolute;
-      }
-
-      .arrow-next{
-        position: absolute;
-        left: 40px;
+  .header{
+    .arrow-next{
+      &[data-show="single"]{
         transform: rotate(180deg);
       }
     }
+  }
 
-    .display{
-      border-bottom: none;
+  .display{
+    border-bottom: none;
 
-      .songs{
+    &[data-show="single"]{
+      .playlist{
         opacity: 0;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
         z-index: -1;
       }
 
@@ -91,9 +79,27 @@
         z-index: 1;
       }
     }
+
+    &[data-show="playlist"]{
+      .playlist{
+        opacity: 1;
+        position: absolute;
+        top: 15px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+
+      .single{
+        opacity: 0;
+        position: absolute;
+        z-index: 0;
+      }
+    }
   }
 
-  &[data-status='playlist']{
+  &[data-show='playlist']{
     .songs{
       opacity: 1;
       position: absolute;
@@ -124,8 +130,8 @@
   }
 
   h1{
-    width: 450px;
-    font-size: 75px;
+    font-size: 65px;
+    line-height: 0.9;
     font-weight: 700;
     margin-top: 20px;
   }

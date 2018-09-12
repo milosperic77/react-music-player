@@ -5,7 +5,6 @@ import Header from './PlaylistSection/Header';
 import Display from './PlaylistSection/Display';
 import Controls from './PlaylistSection/Controls';
 
-
 const PlaylistSection = props => (
   <div className="playlist-section">
     <Header />
