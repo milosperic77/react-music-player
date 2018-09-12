@@ -107,6 +107,11 @@ class ConfigProvider extends Component {
     const songCover = this.getSongs[this.state.currentTrackIndex - 1].songCover;
     const tags = this.getSongs[this.state.currentTrackIndex - 1].tags;
 
+    const minutes = parseInt(this.getSongs[this.state.currentTrackIndex - 1].duration / 60, 10);
+    const second = parseInt(this.getSongs[this.state.currentTrackIndex - 1].duration % 60, 10);
+
+    console.log(`${minutes}:${second}`);
+
     this.setState((state, props) => {
       let currentIndex = state.currentTrackIndex;
       if (currentIndex <= 0) {

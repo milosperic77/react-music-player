@@ -5,7 +5,7 @@ import Consumer from '../../../configContext'
 class Song extends Component {
   constructor(props) {
     super(props);
-    this.state ={ duration: '0:00'}
+    this.state = {duration: '0:00'}
   }
 
   setDurations = (e) => {
@@ -34,8 +34,8 @@ class Song extends Component {
               </div>
 
               <audio
-                onLoadedMetadata={this.setDurations}
                 src={this.props.srcMp3}
+                onLoadedMetadata={this.setDurations}
               />
 
               <div className="song-info">

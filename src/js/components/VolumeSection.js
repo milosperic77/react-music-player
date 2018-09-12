@@ -1,16 +1,16 @@
 import React from 'react';
 import VolumeSlider from './VolumeSection/VolumeSlider';
 
-import logo from '../../assets/logos/saco-logo.png';
+// import logo from '../../assets/logos/saco-logo.png';
 
 const VolumeSection = props => (
   <div className="volume-section">
-    <div
+    {/* <div
       className="logo"
       style={{
         backgroundImage: `url(${logo})`
       }}
-    ></div>
+    ></div> */}
 
     <VolumeSlider />
   </div>

@@ -10,7 +10,7 @@ class Controls extends React.Component{
           <div data-screen={this.props.currentDisplay} className="controls">
             <div className="controls-wraper">
               <div className="song-buttons">
-                <div onClick={value.state.prev} className="previous icon fas fa-backward">
+                <div onClick={value.prev} className="previous icon fas fa-backward">
                 </div>
                 {!this.props.playing &&
                   <div onClick={value.state.playPauseToggler}
@@ -20,7 +20,7 @@ class Controls extends React.Component{
                   <div onClick={value.state.playPauseToggler}
                     className="play icon fas fa-pause"/>
                 }
-                <div onClick={value.state.next} className="next icon fas fa-forward"></div>
+                <div onClick={value.next} className="next icon fas fa-forward"></div>
               </div>
 
               <div className="song-timeline">
