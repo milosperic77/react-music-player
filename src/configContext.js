@@ -18,9 +18,6 @@ class ConfigProvider extends Component {
     this.playPauseToggler = this.playPauseToggler.bind(this);
     this.playAudio = this.playAudio.bind(this);
     this.pauseAudio = this.pauseAudio.bind(this);
-    this.prev = this.prev.bind(this);
-    this.next = this.next.bind(this);
-
     // icon
     // sliders
     // error NaN na Click
