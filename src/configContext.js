@@ -43,8 +43,6 @@ class ConfigProvider extends Component {
       playPauseToggler: this.playPauseToggler,
       getVolume: this.getVolume,
     };
-
-
   }
 
   sendSongs(){
