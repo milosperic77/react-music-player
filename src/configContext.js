@@ -23,19 +23,20 @@ class ConfigProvider extends Component {
     // error NaN na Click
 
     // content
-    // default props
+
+    this.getSongs = songs.songs;
 
     this.state = {
       playing: false,
-      songName: 'None',
-      songArtist: 'None',
-      songCover: '',
-      songPath: '',
-      currentTrackIndex: 0,
+      songName: this.getSongs[0].songName,
+      songArtist: this.getSongs[0].trackArtist,
+      songCover: this.getSongs[0].songCover,
+      songPath: this.getSongs[0].songCover,
+      currentTrackIndex: this.getSongs[0].id,
       currentTime: '0:00',
       songDuration: '0:00',
-      songTags: [],
-      volume: 50,
+      songTags: this.getSongs[0].tags,
+      volume: 100,
       currentDisplay: 'playlist',
       timelinePosition: 0,
       toogleDisplay: this.toogleDisplay,
@@ -43,7 +44,7 @@ class ConfigProvider extends Component {
       getVolume: this.getVolume,
     };
 
-    this.getSongs = songs.songs;
+
   }
 
   sendSongs(){
@@ -244,6 +245,11 @@ class ConfigProvider extends Component {
     );
   }
 }
+
+ConfigProvider.defaultProps = {
+  cityList: [],
+  provinceList: [],
+};
 
 export { ConfigProvider };
 export default Consumer;
