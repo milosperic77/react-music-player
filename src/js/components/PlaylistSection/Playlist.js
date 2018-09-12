@@ -19,6 +19,7 @@ class Playlist extends Component {
                   songCover={song.songCover}
                   srcMp3={song.srcMp3}
                   isPlaying={value.state.playing}
+                  isActive={song.id === value.state.currentTrackIndex ? true : false }
                 />
               ))
             )}

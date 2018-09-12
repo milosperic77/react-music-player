@@ -25,7 +25,7 @@ class Song extends Component {
             onClick={(e)=>{value.onSongClick(e.target)}} className="song"
             data-id={this.props.id}
             data-duration={this.state.duration}
-            >
+          >
               <div className="cover-image">
                 <div
                   className="image"
@@ -41,8 +41,8 @@ class Song extends Component {
               <div className="song-info">
                 <p className="artist">{this.props.trackArtist}</p>
                 <h4 className="song-name">{this.props.songName}</h4>
-                <div className='song-duration'>
-                  {this.props.isPlaying ? <Eq isPlaying={this.props.isPlaying} /> : '' }
+                <div className="song-duration">
+                  {this.props.isActive ? <Eq wave={value.state.playing} /> : ''}
                   <p className='full-duration'>{this.state.duration}</p>
                 </div>
               </div>

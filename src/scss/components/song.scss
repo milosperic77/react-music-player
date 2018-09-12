@@ -3,11 +3,11 @@
  * -------------
  */
 
-.songs{
+.songs {
   transition: opacity 600ms;
 }
 
-.song{
+.song {
   align-items: center;
   justify-content: center;
   display: flex;
@@ -15,24 +15,7 @@
   transition: opacity 500ms;
   padding-left: 15px;
   margin-bottom: 10px;
-  // pointer-events all
-  // pointer-events all
-  // &[data-click='1']{
-  //   animate clickC 500ms, opacity(0.3), scale(0.98)
-  // }
-  // &[data-click='2']{
-  //   animate clickD 500ms, opacity(0.3), scale(0.98)
-  // }
-  &[data-spectrum="true"]{
-    .eq{
-      opacity: 1;
-    }
-  }
-  // &[data-spectrum="false"]{
-  //   .eq{
-  //     opacity: 0;
-  //   }
-  // }
+
   .cover-image{
     pointer-events: none;
 
@@ -67,28 +50,16 @@
   }
 
   .song-duration{
-    // outline: 1px solid red;
     pointer-events: none;
     display: flex;
     align-items: center;
     position: absolute;
     right: 20px;
 
-    .eq{
+    .eq {
       margin-left: 5px;
       margin-right: 30px;
       transition: opacity 300ms;
-
-      span{
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3){
-          // animate cancel 100ms, 100% scaleY(2)
-          transition: opacity 600ms;
-        }
-      }
-
-    }
 
       span{
         display: inline-block;
@@ -97,31 +68,65 @@
         margin-left: 4px;
         padding: 0;
         background-color: gray;
-
         transform: scaleY(2);
         transform-origin: bottom;
+      }
 
-        &:nth-child(1){
-          // animate: eq1 600ms infinite alternate, 100% scaleY(6);
-          opacity: 1;
+      &[data-playing="false"]{
+        span {
+          &:nth-child(1),
+          &:nth-child(2),
+          &:nth-child(3){
+            transition: opacity 600ms;
+            animation: cancel 100ms;
+            @keyframes eq1 {
+              100% {transform: scaleY(2)}
+            }
+            @keyframes eq2 {
+              100% {transform: scaleY(2)}
+            }
+            @keyframes eq3 {
+              100% {transform: scaleY(2)}
+            }
+          }
         }
+      }
 
-        &:nth-child(2){
-          // animate: eq2 800ms infinite alternate, 100% scaleY(8);
-          opacity: 1;
-        }
+      &[data-playing="true"]{
+        span {
+          &:nth-child(1){
+            animation: eq1 600ms infinite;
+            opacity: 1;
+            @keyframes eq1 {
+              100% {transform: scaleY(6)}
+            }
+          }
 
-        &:nth-child(3){
-          // animate: eq3 400ms infinite alternate, 100% scaleY(4);
-          opacity: 1;
+          &:nth-child(2){
+            animation: eq2 800ms infinite;
+            opacity: 1;
+            @keyframes eq2 {
+              100% {transform: scaleY(8)}
+            }
+          }
+
+          &:nth-child(3){
+            animation: eq3 400ms infinite;
+            opacity: 1;
+            @keyframes eq3 {
+              100% {transform: scaleY(4)}
+            }
+          }
         }
       }
     }
 
-    p {
-      font-size: 14px;
-      line-height: 1.6;
-      font-weight: 300;
-      color: gray;
-    }
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: gray;
+  }
 }
