@@ -5,6 +5,7 @@
 
 .playlist {
   transition: opacity 600ms;
+  overflow-y: scroll;
 }
 
 .song {
@@ -14,7 +15,7 @@
   cursor: pointer;
   transition: opacity 500ms;
   padding-left: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
   .cover-image{
     pointer-events: none;

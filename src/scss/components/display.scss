@@ -46,7 +46,6 @@
 }
 
 .logo{
-  // background-image: url($srcPath + 'assets/logos/saco-logo.png');
   filter: grayscale(100%);
   height: 100vh;
   background-repeat: no-repeat;
@@ -131,7 +130,7 @@
 
   h1{
     font-size: 65px;
-    line-height: 0.9;
+    line-height: 1.1;
     font-weight: 700;
     margin-top: 20px;
   }

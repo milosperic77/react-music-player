@@ -5,12 +5,15 @@ import Consumer from '../../../configContext'
 class Song extends Component {
   constructor(props) {
     super(props);
-    this.state = {duration: '0:00'}
+    this.state = {
+      duration: ''
+    }
   }
 
   setDurations = (e) => {
     const minutes = parseInt(e.target.duration / 60, 10);
-    const second = parseInt(e.target.duration % 60, 10);
+    const cS = parseInt(e.target.duration % 60, 10);
+    const second = cS < 10 ? `0${cS}` : cS;
 
     this.setState({
       duration: `${minutes}:${second}`

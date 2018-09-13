@@ -22,8 +22,6 @@ class ConfigProvider extends Component {
     // sliders
     // error NaN na Click
 
-    // content
-
     this.getSongs = songs.songs;
 
     this.state = {
@@ -69,6 +67,7 @@ class ConfigProvider extends Component {
     } else if (this.state.currentTrackIndex !== songId || !this.state.playing ) {
       this.setState({
         playing: true,
+        currentDisplay: 'single',
         songName: songName,
         songArtist: trackArtist,
         songTags: tags,
@@ -82,10 +81,12 @@ class ConfigProvider extends Component {
 
   durations(){
     const minutes = parseInt(this.audioElement.duration / 60, 10);
-    const second = parseInt(this.audioElement.duration % 60, 10);
+    const cS = parseInt(this.audioElement.duration % 60, 10);
+    const second = cS < 10 ? `0${cS}` : cS;
     const durations  = `${minutes}:${second}`;
+
     this.setState({
-      songDuration: durations
+      songDuration: durations,
     })
   }
 
@@ -170,11 +171,9 @@ class ConfigProvider extends Component {
     const cd = parseInt(this.audioElement.duration, 10);
     const rawPosition = (ct / cd) * 100;
 
-    const position = Math.floor(rawPosition);
-
     this.setState({
       currentTime: `${minutes}:${seconds}`,
-      timelinePosition: position,
+      timelinePosition: rawPosition,
     });
   };
 
@@ -230,10 +229,10 @@ class ConfigProvider extends Component {
         next: this.next
       }}>
         <audio
-          onLoadedMetadata={this.durations}
           preload="auto"
-          ref={(audio) => {this.audioElement = audio}}
+          onLoadedMetadata={this.durations}
           onTimeUpdate={this.getUpdatedTime}
+          ref={(audio) => {this.audioElement = audio}}
           song-id={this.state.currentTrackIndex}
         >
           <source src={this.state.songPath} />
@@ -243,11 +242,6 @@ class ConfigProvider extends Component {
     );
   }
 }
-
-ConfigProvider.defaultProps = {
-  cityList: [],
-  provinceList: [],
-};
 
 export { ConfigProvider };
 export default Consumer;

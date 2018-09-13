@@ -26,7 +26,7 @@ class Controls extends React.Component{
               <div className="song-timeline">
                 <InputRange
                   className="slider-fixes"
-                  draggableTrack={true}
+                  draggable={true}
                   step={1}
                   minValue={0}
                   maxValue={100}
