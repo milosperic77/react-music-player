@@ -22,21 +22,27 @@ class ConfigProvider extends Component {
     // sliders
     // error NaN na Click
 
+    // make available for play
+    // prev btn bug
+    //
+
     this.getSongs = songs.songs;
 
     this.state = {
       playing: false,
-      songName: this.getSongs[0].songName,
-      songArtist: this.getSongs[0].trackArtist,
-      songCover: this.getSongs[0].songCover,
-      songPath: this.getSongs[0].songCover,
-      currentTrackIndex: this.getSongs[0].id,
+      songName: this.getSongs[1].songName,
+      songArtist: this.getSongs[1].trackArtist,
+      songCover: this.getSongs[1].songCover,
+      songPath: this.getSongs[1].songCover,
+      currentTrackIndex: this.getSongs[1].id,
       currentTime: '0:00',
       songDuration: '0:00',
-      songTags: this.getSongs[0].tags,
+      songTags: this.getSongs[1].tags,
       volume: 100,
       currentDisplay: 'playlist',
       timelinePosition: 0,
+      playAvaiable: false,
+      allSongs: this.getSongs.length,
       toogleDisplay: this.toogleDisplay,
       playPauseToggler: this.playPauseToggler,
       getVolume: this.getVolume,
@@ -72,6 +78,7 @@ class ConfigProvider extends Component {
         songArtist: trackArtist,
         songTags: tags,
         songCover: songCover,
+        playAvaiable: true,
         currentTrackIndex: id,
         songPath: srcMp3,
         songDuration: dataDuration
@@ -111,11 +118,8 @@ class ConfigProvider extends Component {
     const tags = this.getSongs[this.state.currentTrackIndex - 1].tags;
 
     this.setState((state, props) => {
-      let currentIndex = state.currentTrackIndex;
-      if (currentIndex <= 0) {
-        return(
-          null
-        )
+      if ((state.currentTrackIndex) === 0) {
+        return null;
       } else {
         return {
           playing: true,
@@ -142,15 +146,16 @@ class ConfigProvider extends Component {
     const tags = this.getSongs[this.state.currentTrackIndex + 1].tags;
 
     this.setState((state, props) => {
-      let currentIndex = state.currentTrackIndex;
-      if (currentIndex > this.getSongs.length) {
+      if (state.currentTrackIndex > this.getSongs.length) {
         return null;
       } else {
         return {
           playing: true,
+          availableBtn: true,
           songName: songName,
           songArtist: trackArtist,
           songTags: tags,
+          availableNext: true,
           songCover: songCover,
           currentTrackIndex: id,
           songPath: srcMp3,
@@ -170,10 +175,11 @@ class ConfigProvider extends Component {
     const ct = parseInt(this.audioElement.currentTime, 10);
     const cd = parseInt(this.audioElement.duration, 10);
     const rawPosition = (ct / cd) * 100;
+    const position = Math.round(rawPosition);
 
     this.setState({
       currentTime: `${minutes}:${seconds}`,
-      timelinePosition: rawPosition,
+      timelinePosition: position,
     });
   };
 

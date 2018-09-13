@@ -10,17 +10,31 @@ class Controls extends React.Component{
           <div data-screen={this.props.currentDisplay} className="controls">
             <div className="controls-wraper">
               <div className="song-buttons">
-                <div onClick={value.prev} className="previous icon fas fa-backward">
-                </div>
+                <div
+                  onClick={value.prev}
+                  data-available={value.state.currentTrackIndex === 0 ? false : true}
+                  className="previous icon fas fa-backward"
+                />
+
                 {!this.props.playing &&
-                  <div onClick={value.state.playPauseToggler}
-                    className="play icon fas fa-play"/>
-                }
+                  <div
+                    onClick={value.state.playPauseToggler}
+                    data-available={value.state.playAvaiable}
+                    className="play icon fas fa-play"
+                />}
+
                 {this.props.playing &&
-                  <div onClick={value.state.playPauseToggler}
-                    className="play icon fas fa-pause"/>
-                }
-                <div onClick={value.next} className="next icon fas fa-forward"></div>
+                  <div
+                    onClick={value.state.playPauseToggler}
+                    className="play icon fas fa-pause"
+                />}
+
+                <div
+                  onClick={value.next}
+                  data-available={value.state.currentTrackIndex === (value.state.allSongs - 1) ? false : true}
+                  className="next icon fas fa-forward"
+                />
+
               </div>
 
               <div className="song-timeline">

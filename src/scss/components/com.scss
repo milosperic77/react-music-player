@@ -34,6 +34,15 @@
     max-width: 120px;
     margin-left: 20px;
 
+    .play,
+    .previous,
+    .next{
+      &[data-available='false']{
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+
     .previous{
       position: absolute;
       top: 37px;
