@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tags = props => (
+const Tags = () => (
   <div className="tags">
     <div className="tag">Funk</div>
     <div className="tag">Disco</div>

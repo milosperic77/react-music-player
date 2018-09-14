@@ -1,12 +1,12 @@
 import React from 'react';
-import AlbumCover from './AlbumSection/AlbumCover';
+import AlbumCover from './AlbumCover';
 
-import Consumer from '../../configContext'
+import Consumer from '../../../configContext';
 
-const AlbumSection = props => (
+const AlbumSection = () => (
   <div className="album-section">
     <Consumer>
-      {(value)=>(
+      {value => (
         <AlbumCover songCover={value.state.songCover} />
       )}
     </Consumer>

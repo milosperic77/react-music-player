@@ -4,10 +4,9 @@ const AlbumCover = props => (
   <div
     className="album-cover"
     style={{
-      backgroundImage: `url(${props.songCover})`
+      backgroundImage: `url(${props.songCover})`,
     }}
-  >
-  </div>
+  />
 );
 
 export default AlbumCover;

@@ -7,7 +7,6 @@
   .single
 */
 
-
 .display{
   z-index: 1;
 
@@ -36,6 +35,7 @@
     margin-right: 30px;
     font-size: 38px;
     color: gray;
+    opacity: 0.6;
     transition: transform 300ms ease-out;
   }
 
@@ -58,6 +58,11 @@
     .arrow-next{
       &[data-show="single"]{
         transform: rotate(180deg);
+
+        &:hover{
+          cursor: pointer;
+          transform: translateX(-10px) rotate(180deg);
+        }
       }
     }
   }
@@ -142,10 +147,11 @@
     .tag{
       font-size: 12px;
       color: gray;
-      border: 1px solid gray;
+      border: 1px solid $gray;
       padding: 6px 9px 5px 9px;
       margin-right: 5px;
       border-radius: 4px;
+      opacity: 0.6;
     }
   }
 }

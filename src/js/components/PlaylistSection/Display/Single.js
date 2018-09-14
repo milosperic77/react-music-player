@@ -7,8 +7,8 @@ const Single = props => (
     <h1 className="single-song-title">{props.songName}</h1>
     <div className="tags">
       {
-        props.tags.map((tag, index) => (
-          <div key={index} className="tag">
+        props.tags.map(tag => (
+          <div key={tag.id} className="tag">
             {tag}
           </div>
         ))

@@ -1,9 +1,9 @@
 import React from 'react';
-import Consumer from '../../configContext'
+import Consumer from '../../../configContext';
 
-import Header from './PlaylistSection/Header';
-import Display from './PlaylistSection/Display';
-import Controls from './PlaylistSection/Controls';
+import Header from './Header/index';
+import Display from './Display/index';
+import Controls from './Controls/index';
 
 const PlaylistSection = props => (
   <div className="playlist-section">
@@ -12,7 +12,7 @@ const PlaylistSection = props => (
       currentTrackIndex={props.currentTrackIndex}
     />
     <Consumer>
-      {(value) => (
+      {value => (
         <Controls
           playing={value.state.playing}
           currentDisplay={value.state.currentDisplay}
