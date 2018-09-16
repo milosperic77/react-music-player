@@ -91,7 +91,7 @@ export default {
     {
       id: 11,
       trackArtist: 'A Tribe Called Quest',
-      songName: 'Come Together',
+      songName: 'Electric Relaxation',
       tags: ['Classic Hip Hop', 'Alternative hip hop'],
       srcMp3: require('../mp3/12-atcq-electric-relaxation.mp3'),
       songCover: require('../images/12.jpg'),

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { ConfigProvider } from '../configContext';
-import 'react-rangeslider/lib/index.css';
-
 
 import AlbumSection from './components/AlbumSection/index';
 import VolumeSection from './components/VolumeSection/index';

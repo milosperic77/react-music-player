@@ -1,5 +1,6 @@
 import React from 'react';
-import InputRange from 'react-input-range';
+import Slider from 'react-rangeslider';
+
 import Consumer from '../../../../configContext';
 
 const Controls = props => (
@@ -43,12 +44,11 @@ const Controls = props => (
           </div>
 
           <div className="song-timeline">
-            <InputRange
-              className="slider-fixes"
+            <Slider
               draggable
               step={1}
-              minValue={0}
-              maxValue={100}
+              min={0}
+              max={100}
               defaultValue={0}
               value={value.state.timelinePosition}
               onChange={(e) => { value.getTimeline(e); }}

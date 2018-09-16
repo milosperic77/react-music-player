@@ -1,7 +1,5 @@
 import React from 'react';
 import Slider from 'react-rangeslider';
-// import InputRange from 'react-input-range';
-
 
 import Consumer from '../../../configContext';
 

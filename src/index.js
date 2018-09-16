@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import 'react-rangeslider/lib/index.css';
 import './scss/index.scss';
-import 'react-input-range/lib/css/index.css';
 
 import App from './js/App';
 

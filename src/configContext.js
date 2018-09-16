@@ -7,20 +7,11 @@ class ConfigProvider extends Component {
   constructor(props) {
     super(props);
 
-    // icon
-    // sliders
-    // error NaN na Click
-
-    // na osnovu state.song upisivati stvari u setState za ostalo
-    // Display index je primer
-    // fora je da se elementi u objektu citaju iz liste,
-    // a ne da se prvo sve gura u state pa onda da se lista na sajtu
-
     this.state = {
       currentDisplay: 'playlist',
       song: 0,
       playing: false,
-      volume: 50,
+      volume: 100,
       currentTime: '0:00',
       songDuration: '0:00',
     };
@@ -98,7 +89,7 @@ class ConfigProvider extends Component {
     });
   }
 
-  getUpdatedTime = () => {
+  setUpdatedTime = () => {
     const minutes = parseInt(this.audioElement.currentTime / 60, 10);
     const cS = parseInt(this.audioElement.currentTime % 60, 10);
     const seconds = cS < 10 ? `0${cS}` : cS;
@@ -125,6 +116,11 @@ class ConfigProvider extends Component {
     this.setState({ volume }, this.volumeLevel());
   }
 
+  volumeLevel = () => {
+    const formatVolumeValue = this.state.volume / 100;
+    this.audioElement.volume = formatVolumeValue;
+  }
+
   playPauseToggler = () => {
     if (!this.state.playing) {
       this.setState({
@@ -147,11 +143,6 @@ class ConfigProvider extends Component {
     this.audioElement.pause();
   }
 
-  volumeLevel = () => {
-    const formatVolumeValue = this.state.volume / 100;
-    this.audioElement.volume = formatVolumeValue;
-  }
-
   render() {
     return (
       <Provider
@@ -172,7 +163,7 @@ class ConfigProvider extends Component {
           onLoadedMetadata={this.durations}
           preload="auto"
           ref={(audio) => { this.audioElement = audio; }}
-          onTimeUpdate={this.getUpdatedTime}
+          onTimeUpdate={this.setUpdatedTime}
           song-id={this.state.song}
         >
           <track kind="captions" />
