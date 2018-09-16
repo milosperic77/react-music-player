@@ -16,8 +16,8 @@ const Playlist = () => (
               songTags={song.tags}
               trackArtist={song.trackArtist}
               songCover={song.songCover}
+              srcMp3={song.srcMp3}
               playing={value.state.playing}
-              // srcMp3={song.srcMp3}
             />
           ))
         )}

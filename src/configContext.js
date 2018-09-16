@@ -21,16 +21,14 @@ class ConfigProvider extends Component {
       song: 0,
       playing: false,
       volume: 50,
-      // currentTime: '0:00',
-      // songDuration: '0:00',
-      // getVolume: this.getVolume,
+      currentTime: '0:00',
+      songDuration: '0:00',
     };
   }
 
   onSongClick = (index) => {
     const songId = index.getAttribute('data-id');
     const integer = parseInt(songId, 10);
-    // const dataDuration = index.getAttribute('data-duration');
     this.audioElement.load();
     if (this.state.currentTrackIndex === integer && this.state.playing) {
       this.setState({
@@ -41,17 +39,18 @@ class ConfigProvider extends Component {
       this.setState({
         playing: true,
         song: integer,
-        // songDuration: dataDuration,
       }, this.playAudio());
     }
   }
 
   durations = () => {
     const minutes = parseInt(this.audioElement.duration / 60, 10);
-    const second = parseInt(this.audioElement.duration % 60, 10);
-    const durations = `${minutes}:${second}`;
+    const cS = parseInt(this.audioElement.duration % 60, 10);
+    const second = cS < 10 ? `0${cS}` : cS;
+    const duration = `${minutes}:${second}`;
+
     this.setState({
-      songDuration: durations
+      songDuration: duration,
     });
   }
 
@@ -123,10 +122,7 @@ class ConfigProvider extends Component {
 
   getVolume = (e) => {
     const volume = e;
-
-    this.setState({
-      volume,
-    }, this.volumeLevel());
+    this.setState({ volume }, this.volumeLevel());
   }
 
   playPauseToggler = () => {

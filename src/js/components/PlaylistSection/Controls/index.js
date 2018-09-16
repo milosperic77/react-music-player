@@ -35,8 +35,8 @@ const Controls = props => (
               onClick={value.next}
               className="next icon fas fa-forward"
               data-available={
-                value.state.currentTrackIndex === (value.state.allSongs - 1) ?
-                false : true
+                value.state.currentTrackIndex === (value.state.allSongs - 1)
+                ? false : true
               }
             />
 

@@ -9,6 +9,39 @@
   top: -2px;
 }
 
-.input-range .input-range__track--active{
-  background: gray;
+
+
+.rangeslider.rangeslider-vertical{
+  max-width: 4px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: none;
+  background-color: $gray;
+
+  .rangeslider__fill{
+    background-color: #808080;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .rangeslider__labels{
+    height: 0;
+  }
+
+  .rangeslider__handle-tooltip{
+    display: none;
+  }
+
+  .rangeslider__handle{
+    width: 15px;
+    height: 15px;
+    left: -7px;
+    border-radius: 50%;
+    background-color: #808080;
+    box-shadow: none;
+    outline: none;
+    border: 2px solid white;
+  }
 }
