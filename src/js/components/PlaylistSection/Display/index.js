@@ -2,19 +2,17 @@ import React from 'react';
 import Playlist from './Playlist';
 import Single from './Single';
 import Consumer from '../../../../configContext';
+import songs from '../../../../assets/data/songs';
 
-// pozovem listu i sibam audioElement
-// song[value.state.song].songName
 const Display = () => (
   <Consumer>
     {value => (
       <div className="display" data-show={value.state.currentDisplay}>
         <Playlist />
-
         <Single
-          songName={value.state.song}
-          tags={value.state.songTags}
-          songArtist={value.state.songArtist}
+          songName={songs.songs[value.state.song].songName}
+          tags={songs.songs[value.state.song].tags}
+          songArtist={songs.songs[value.state.song].trackArtist}
         />
       </div>
     )}

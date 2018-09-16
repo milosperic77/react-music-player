@@ -2,7 +2,6 @@ import React, { Component, createContext } from 'react';
 import songs from './assets/data/songs';
 
 const { Provider, Consumer } = createContext();
-const song = require('./assets/data/songs.js').default.songs;
 
 class ConfigProvider extends Component {
   constructor(props) {
@@ -11,8 +10,6 @@ class ConfigProvider extends Component {
     // icon
     // sliders
     // error NaN na Click
-    // content
-    // default props
 
     // na osnovu state.song upisivati stvari u setState za ostalo
     // Display index je primer
@@ -20,59 +17,31 @@ class ConfigProvider extends Component {
     // a ne da se prvo sve gura u state pa onda da se lista na sajtu
 
     this.state = {
-      song,
-      playing: false,
-      songName: 'None',
-      songArtist: 'None',
-      songCover: '',
-      songPath: '',
-      currentTrackIndex: 0,
-      currentTime: '0:00',
-      songDuration: '0:00',
-      songTags: [],
-      volume: 50,
       currentDisplay: 'playlist',
-      timelinePosition: 0,
-      toogleDisplay: this.toogleDisplay,
-      playPauseToggler: this.playPauseToggler,
-      getVolume: this.getVolume,
+      song: 0,
+      playing: false,
+      volume: 50,
+      // currentTime: '0:00',
+      // songDuration: '0:00',
+      // getVolume: this.getVolume,
     };
-
-    this.getSongs = songs.songs;
-  }
-
-  sendSongs = () => {
-    return this.getSongs;
   }
 
   onSongClick = (index) => {
     const songId = index.getAttribute('data-id');
-    const id = song[songId].id;
-    // const trackArtist = song[songId].trackArtist;
-    // const songName = song[songId].songName;
-    // const srcMp3 = song[songId].srcMp3;
-    // const songCover = song[songId].songCover;
-    // const tags = song[songId].tags;
-    const dataDuration = index.getAttribute('data-duration');
-
+    const integer = parseInt(songId, 10);
+    // const dataDuration = index.getAttribute('data-duration');
     this.audioElement.load();
-
-    if (this.state.currentTrackIndex === songId && this.state.playing) {
+    if (this.state.currentTrackIndex === integer && this.state.playing) {
       this.setState({
         playing: false,
-        currentTrackIndex: id
       }, this.pauseAudio());
-    } else if (this.state.currentTrackIndex !== songId || !this.state.playing ) {
+      this.audioElement.pause();
+    } else if (this.song !== integer || !this.state.playing) {
       this.setState({
         playing: true,
-        song: song[songId].id,
-        // songName: songName,
-        // songArtist: trackArtist,
-        // songTags: tags,
-        // songCover: songCover,
-        currentTrackIndex: id,
-        // songPath: srcMp3,
-        songDuration: dataDuration
+        song: integer,
+        // songDuration: dataDuration,
       }, this.playAudio());
     }
   }
@@ -80,79 +49,51 @@ class ConfigProvider extends Component {
   durations = () => {
     const minutes = parseInt(this.audioElement.duration / 60, 10);
     const second = parseInt(this.audioElement.duration % 60, 10);
-    const durations  = `${minutes}:${second}`;
+    const durations = `${minutes}:${second}`;
     this.setState({
       songDuration: durations
-    })
+    });
   }
 
-  toogleDisplay =() =>{
-    if(this.state.currentDisplay === 'playlist'){
+  toogleDisplay = () => {
+    if (this.state.currentDisplay === 'playlist') {
       this.setState({
-        currentDisplay: 'single'
+        currentDisplay: 'single',
       });
-    } else if(this.state.currentDisplay === 'single'){
+    } else if (this.state.currentDisplay === 'single') {
       this.setState({
-        currentDisplay: 'playlist'
+        currentDisplay: 'playlist',
       });
     }
   }
 
   prev = () => {
-    const id = this.getSongs[this.state.song - 1].id;
-    const trackArtist = this.getSongs[this.state.song - 1].trackArtist;
-    const songName = this.getSongs[this.state.song - 1].songName;
-    const srcMp3 = this.getSongs[this.state.song - 1].srcMp3;
-    const songCover = this.getSongs[this.state.song - 1].songCover;
-    const tags = this.getSongs[this.state.song - 1].tags;
-
-    this.setState((state, props) => {
-      const currentIndex = state.currentTrackIndex;
+    this.setState((prevState) => {
+      const currentIndex = this.state.song;
       if (currentIndex <= 0) {
-        return (
-          null
-        )
-      } else {
-        return {
-          playing: true,
-          songName: songName,
-          songArtist: trackArtist,
-          songTags: tags,
-          songCover: songCover,
-          currentTrackIndex: id,
-          songPath: srcMp3,
-        };
+          return null;
       }
-    },() => {
+      return {
+        playing: true,
+        song: prevState.song - 1,
+      };
+    }, () => {
       this.audioElement.load();
       this.audioElement.play();
     });
   }
 
   next = () => {
-    const id = this.getSongs[this.state.song + 1].id;
-    const trackArtist = this.getSongs[this.state.song + 1].trackArtist;
-    const songName = this.getSongs[this.state.song + 1].songName;
-    const srcMp3 = this.getSongs[this.state.song + 1].srcMp3;
-    const songCover = this.getSongs[this.state.song + 1].songCover;
-    const tags = this.getSongs[this.state.song + 1].tags;
-
-    this.setState((state, props) => {
-      let currentIndex = state.currentTrackIndex;
-      if (currentIndex > this.getSongs.length) {
+    this.setState((prevState) => {
+      const currentIndex = this.state.song;
+      if (currentIndex >= songs.songs.length) {
         return null;
-      } else {
-        return {
-          playing: true,
-          songName: songName,
-          songArtist: trackArtist,
-          songTags: tags,
-          songCover: songCover,
-          currentTrackIndex: id,
-          songPath: srcMp3,
-        };
       }
-    },() => {
+      return {
+        playing: true,
+        song: prevState.song + 1,
+      };
+    }, () => {
       this.audioElement.load();
       this.audioElement.play();
     });
@@ -182,20 +123,19 @@ class ConfigProvider extends Component {
 
   getVolume = (e) => {
     const volume = e;
-    this.setState((state, props) => {
-      return {
-        volume,
-      };
+
+    this.setState({
+      volume,
     }, this.volumeLevel());
   }
 
   playPauseToggler = () => {
-    if(!this.state.playing){
+    if (!this.state.playing) {
       this.setState({
         playing: true,
       });
       this.playAudio();
-    } else if(this.state.playing){
+    } else if (this.state.playing) {
       this.setState({
         playing: false,
       });
@@ -218,22 +158,29 @@ class ConfigProvider extends Component {
 
   render() {
     return (
-      <Provider value={{
-        state: this.state,
-        sendSongs: this.sendSongs(),
-        onSongClick: this.onSongClick,
-        getTimeline: this.getTimeline,
-        prev: this.prev,
-        next: this.next
-      }}>
+      <Provider
+        value={{
+          state: this.state,
+          onSongClick: this.onSongClick,
+          getTimeline: this.getTimeline,
+          playPauseToggler: this.playPauseToggler,
+          play: this.play,
+          pause: this.pause,
+          prev: this.prev,
+          next: this.next,
+          toogleDisplay: this.toogleDisplay,
+          getVolume: this.getVolume,
+        }}
+      >
         <audio
           onLoadedMetadata={this.durations}
           preload="auto"
-          ref={(audio) => {this.audioElement = audio}}
+          ref={(audio) => { this.audioElement = audio; }}
           onTimeUpdate={this.getUpdatedTime}
           song-id={this.state.song}
         >
-          <source src={this.state.songPath} />
+          <track kind="captions" />
+          <source src={songs.songs[this.state.song].srcMp3} />
         </audio>
         {this.props.children}
       </Provider>

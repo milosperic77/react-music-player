@@ -10,29 +10,34 @@ const Controls = props => (
           <div className="song-buttons">
             <div
               onClick={value.prev}
-              data-available={value.state.currentTrackIndex === 0 ? false : true}
               className="previous icon fas fa-backward"
+              data-available={
+                value.state.currentTrackIndex === 0 ? false : true
+              }
             />
 
             {!props.playing && (
               <div
-                onClick={value.state.playPauseToggler}
-                data-available={value.state.playAvaiable}
+                onClick={value.playPauseToggler}
                 className="play icon fas fa-play"
+                data-available={value.state.playAvaiable}
               />
             )}
 
             {props.playing && (
               <div
-                onClick={value.state.playPauseToggler}
+                onClick={value.playPauseToggler}
                 className="play icon fas fa-pause"
               />
             )}
 
             <div
               onClick={value.next}
-              data-available={value.state.currentTrackIndex === (value.state.allSongs - 1) ? false : true}
               className="next icon fas fa-forward"
+              data-available={
+                value.state.currentTrackIndex === (value.state.allSongs - 1) ?
+                false : true
+              }
             />
 
           </div>

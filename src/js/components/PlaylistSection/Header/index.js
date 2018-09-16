@@ -1,5 +1,5 @@
 import React from 'react';
-import Consumer from '../../../../configContext'
+import Consumer from '../../../../configContext';
 
 const Header = () => (
   <div className="header">
@@ -7,8 +7,8 @@ const Header = () => (
     <Consumer>
       {value => (
         <i
-          onClick={value.state.toogleDisplay}
-          data-show={value.state.currentDisplay}
+          onClick={value.toogleDisplay}
+          data-show={value.currentDisplay}
           className="fas fas fa-chevron-right arrow-next"
         />
       )}

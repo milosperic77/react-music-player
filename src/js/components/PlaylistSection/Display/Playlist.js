@@ -1,13 +1,14 @@
 import React from 'react';
 import Song from './Song';
 import Consumer from '../../../../configContext';
+import songs from '../../../../assets/data/songs';
 
 const Playlist = () => (
   <div className="playlist">
     {
       <Consumer>
         {value => (
-          value.sendSongs.map(song => (
+          songs.songs.map(song => (
             <Song
               key={song.id}
               id={song.id}
@@ -15,15 +16,13 @@ const Playlist = () => (
               songTags={song.tags}
               trackArtist={song.trackArtist}
               songCover={song.songCover}
-              srcMp3={song.srcMp3}
-              isPlaying={value.state.playing}
-              isActive={song.id === value.state.currentTrackIndex
-                ? true : false}
+              playing={value.state.playing}
+              // srcMp3={song.srcMp3}
             />
           ))
         )}
       </Consumer>
-  }
+    }
   </div>
 );
 
