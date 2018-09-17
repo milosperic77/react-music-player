@@ -18,6 +18,7 @@ const Playlist = () => (
               songCover={song.songCover}
               srcMp3={song.srcMp3}
               playing={value.state.playing}
+              isActive={song.id === value.state.song ? true : false}
             />
           ))
         )}

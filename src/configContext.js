@@ -113,8 +113,11 @@ class ConfigProvider extends Component {
   }
 
   getVolume = (e) => {
+    // console.log('aa');
     const volume = e;
-    this.setState({ volume }, this.volumeLevel());
+    this.setState({ volume }, () => {
+      this.volumeLevel();
+    });
   }
 
   volumeLevel = () => {

@@ -2,18 +2,23 @@ import React from 'react';
 import Consumer from '../../../../configContext';
 
 const Header = () => (
-  <div className="header">
-    <h3 className="test-inner">Top Songs</h3>
-    <Consumer>
-      {value => (
+  <Consumer>
+    {value => (
+      <div className="header">
+        <h3 className="test-inner">
+          {
+            value.state.currentDisplay === 'single'
+              ? 'Single' : 'Playlist'
+          }
+        </h3>
         <i
           onClick={value.toogleDisplay}
-          data-show={value.currentDisplay}
+          data-show={value.state.currentDisplay}
           className="fas fas fa-chevron-right arrow-next"
         />
-      )}
-    </Consumer>
-  </div>
+      </div>
+    )}
+  </Consumer>
 );
 
 export default Header;
