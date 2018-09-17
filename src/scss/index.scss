@@ -5,17 +5,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 @import "./variables/variables";
 
-
 @import "./body/body";
 @import "./body/range-slider";
 
-
-@import "./components/com";
+@import "./components/controls";
 @import "./components/display";
 @import "./components/song";
-/* @import "./components/com"; */
-@import "./components/slider-fixes";
-/* @import "./components/drugi"; */
 @import "./components/album-section";
-/* @import "./components/song"; */
 @import "./components/volume-section";
