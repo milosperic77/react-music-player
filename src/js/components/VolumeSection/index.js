@@ -1,7 +1,7 @@
 import React from 'react';
 import VolumeSlider from './VolumeSlider';
 
-import logo from '../../../assets/logos/new-logo.png';
+import logo from '../../../assets/logos/logo.png';
 
 const VolumeSection = () => (
   <div className="volume-section">

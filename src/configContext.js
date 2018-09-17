@@ -30,6 +30,7 @@ class ConfigProvider extends Component {
       this.setState({
         playing: true,
         song: integer,
+        currentDisplay: 'single',
       }, this.playAudio());
     }
   }

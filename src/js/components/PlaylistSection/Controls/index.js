@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-rangeslider';
+import songs from '../../../../assets/data/songs';
 
 import Consumer from '../../../../configContext';
 
@@ -13,7 +14,7 @@ const Controls = props => (
               onClick={value.prev}
               className="previous icon fas fa-backward"
               data-available={
-                value.state.currentTrackIndex === 0 ? false : true
+                value.state.song === 0 ? false : true
               }
             />
 
@@ -21,7 +22,6 @@ const Controls = props => (
               <div
                 onClick={value.playPauseToggler}
                 className="play icon fas fa-play"
-                data-available={value.state.playAvaiable}
               />
             )}
 
@@ -36,7 +36,7 @@ const Controls = props => (
               onClick={value.next}
               className="next icon fas fa-forward"
               data-available={
-                value.state.currentTrackIndex === (value.state.allSongs - 1)
+                value.state.song === (songs.songs.length - 1)
                 ? false : true
               }
             />

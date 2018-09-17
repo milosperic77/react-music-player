@@ -8,6 +8,13 @@
   margin-right: 20px;
   position: relative;
 
+  &[data-screen="playlist"]{
+    .song-buttons .previous[data-available],
+    .song-buttons .next[data-available]{
+      opacity: 0;
+    }
+  }
+
   &[data-screen="single"]{
     .song-buttons{
       .previous,
@@ -49,6 +56,7 @@
       left: -5px;
       opacity: 0;
       font-size: 25px;
+      cursor: pointer;
       transition: opacity 500ms;
     }
 
@@ -58,6 +66,7 @@
       right: -14px;
       opacity: 0;
       font-size: 25px;
+      cursor: pointer;
       transition: opacity 500ms;
     }
 
